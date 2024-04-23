@@ -70,6 +70,7 @@ import { getLocalNetworkMenuRedesignFeatureFlag } from '../../../helpers/utils/f
 import AddNetworkModal from '../../../pages/onboarding-flow/add-network-modal';
 import PopularNetworkList from './popular-network-list/popular-network-list';
 import NetworkListSearch from './network-list-search/network-list-search';
+import { hexToDecimal } from '../../../../shared/modules/conversion.utils';
 
 const ACTION_MODES = {
   // Displays the search box and network list
