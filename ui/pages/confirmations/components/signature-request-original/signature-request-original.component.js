@@ -98,7 +98,7 @@ export default class SignatureRequestOriginal extends Component {
   state = {
     showSignatureRequestWarning: false,
     ///: BEGIN:ONLY_INCLUDE_IF(snaps)
-    showSignatureInsights: false,
+    showSignatureInsights: true,
     ///: END:ONLY_INCLUDE_IF
   };
 
