@@ -5182,10 +5182,9 @@ export function createMetaMetricsDataDeletionTask(): ThunkAction<
   return async (dispatch: MetaMaskReduxDispatch) => {
     try {
       await submitRequestToBackground('createMetaMetricsDataDeletionTask');
+      await forceUpdateMetamaskState(dispatch);
     } catch (error) {
       logErrorWithMessage(error);
-    } finally {
-      await forceUpdateMetamaskState(dispatch);
     }
   };
 }
@@ -5194,16 +5193,14 @@ export function createMetaMetricsDataDeletionTask(): ThunkAction<
  * To check the status of the current delete regulation.
  */
 export async function checkDataDeletionTaskStatus(): Promise<DataDeletionResponse> {
-  let dataDeletionResponse: DataDeletionResponse;
   try {
-    dataDeletionResponse =
-      await submitRequestToBackground<DataDeletionResponse>(
-        'checkDataDeletionTaskStatus',
-      );
+    await submitRequestToBackground<DataDeletionResponse>(
+      'checkDataDeletionTaskStatus',
+    );
+    await forceUpdateMetamaskState(dispatch);
   } catch (error) {
     console.error(error);
   }
-  return dataDeletionResponse;
 }
 
 /**
