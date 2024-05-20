@@ -1,20 +1,20 @@
 import useCurrentConfirmation from '../useCurrentConfirmation';
-import { Severity } from '../../../../helpers/constants/design-system';
 
-const getAlertForConfirmation = (confirmation: any) => {
-  return {
-    key: 'key',
-    reason: 'some_reason',
-    severity: Severity.Danger,
-    alertDetails: 'some info',
-    message: 'message test',
-    provider: 'provider',
-  };
-};
+const mockAlert = [
+  {
+    key: 'erverfvrefv-refvrfv-revrv-retvbrv-rbvrbg',
+    reason: 'This is a test DAPP request',
+    severity: 'info',
+    message: 'This is a mock alert, for demo purpose.',
+    provider: 'MM',
+  },
+];
+
+const getAlertForConfirmation = (confirmation: any) => mockAlert;
 
 const useGeneralAlerts = (): any => {
   const { currentConfirmation } = useCurrentConfirmation();
-  return [getAlertForConfirmation(currentConfirmation)];
+  return getAlertForConfirmation(currentConfirmation);
 };
 
 export default useGeneralAlerts;
