@@ -3249,10 +3249,6 @@ export default class MetamaskController extends EventEmitter {
         preferencesController.setDismissSeedBackUpReminder.bind(
           preferencesController,
         ),
-      setDisabledRpcMethodPreference:
-        preferencesController.setDisabledRpcMethodPreference.bind(
-          preferencesController,
-        ),
       getRpcMethodPreferences:
         preferencesController.getRpcMethodPreferences.bind(
           preferencesController,
