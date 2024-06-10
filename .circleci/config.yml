@@ -1099,11 +1099,7 @@ jobs:
           command: mv ./builds-test ./builds
       - run:
           name: test:e2e:chrome
-          command: |
-            if .circleci/scripts/test-run-e2e.sh
-            then
-              timeout 20m yarn test:e2e:chrome --retries 1
-            fi
+          command: timeout 20m yarn test:e2e:chrome --retries 1
           no_output_timeout: 5m
       - store_artifacts:
           path: test-artifacts
@@ -1127,11 +1123,7 @@ jobs:
           command: mv ./builds-test-confirmations ./builds
       - run:
           name: test:e2e:chrome-confirmation-redesign
-          command: |
-            if .circleci/scripts/test-run-e2e.sh
-            then
-              timeout 20m yarn test:e2e:chrome:confirmation-redesign --retries 1
-            fi
+          command: timeout 20m yarn test:e2e:chrome:confirmation-redesign --retries 1
           no_output_timeout: 5m
           environment:
             ENABLE_CONFIRMATION_REDESIGN: 1
@@ -1157,11 +1149,7 @@ jobs:
           command: mv ./builds-test ./builds
       - run:
           name: test:e2e:chrome:rpc
-          command: |
-            if .circleci/scripts/test-run-e2e.sh
-            then
-              timeout 20m yarn test:e2e:chrome:rpc --retries 1
-            fi
+          command: timeout 20m yarn test:e2e:chrome:rpc --retries 1
           no_output_timeout: 5m
       - store_artifacts:
           path: test-artifacts
@@ -1185,11 +1173,7 @@ jobs:
           command: mv ./builds-test ./builds
       - run:
           name: test:e2e:chrome:multi-provider
-          command: |
-            if .circleci/scripts/test-run-e2e.sh
-            then
-              yarn test:e2e:chrome:multi-provider --retries 1
-            fi
+          command: yarn test:e2e:chrome:multi-provider --retries 1
           no_output_timeout: 5m
       - store_artifacts:
           path: test-artifacts
@@ -1212,11 +1196,7 @@ jobs:
           command: mv ./builds-test-mmi ./builds
       - run:
           name: test:e2e:chrome:rpc
-          command: |
-            if .circleci/scripts/test-run-e2e.sh
-            then
-              timeout 20m yarn test:e2e:chrome:rpc --retries 1 --build-type=mmi
-            fi
+          command: timeout 20m yarn test:e2e:chrome:rpc --retries 1 --build-type=mmi
           no_output_timeout: 5m
       - store_artifacts:
           path: test-artifacts
@@ -1233,11 +1213,7 @@ jobs:
           at: .
       - run:
           name: test:e2e:chrome:vault
-          command: |
-            if .circleci/scripts/test-run-e2e.sh
-            then
-              yarn test:e2e:single test/e2e/vault-decryption-chrome.spec.js --browser chrome --retries 1
-            fi
+          command: yarn test:e2e:single test/e2e/vault-decryption-chrome.spec.js --browser chrome --retries 1
           no_output_timeout: 5m
 
   test-e2e-firefox-flask:
@@ -1256,13 +1232,10 @@ jobs:
           command: mv ./builds-test-flask-mv2 ./builds
       - run:
           name: test:e2e:firefox:flask
-          command: |
-            export ENABLE_MV3=false
-            if .circleci/scripts/test-run-e2e.sh
-            then
-              timeout 20m yarn test:e2e:firefox:flask --retries 1
-            fi
+          command: timeout 20m yarn test:e2e:firefox:flask --retries 1
           no_output_timeout: 5m
+          environment:
+            ENABLE_MV3: false
       - store_artifacts:
           path: test-artifacts
           destination: test-artifacts
@@ -1285,11 +1258,7 @@ jobs:
           command: mv ./builds-test-flask ./builds
       - run:
           name: test:e2e:chrome:flask
-          command: |
-            if .circleci/scripts/test-run-e2e.sh
-            then
-              timeout 20m yarn test:e2e:chrome:flask --retries 1
-            fi
+          command: timeout 20m yarn test:e2e:chrome:flask --retries 1
           no_output_timeout: 5m
       - store_artifacts:
           path: test-artifacts
@@ -1313,11 +1282,7 @@ jobs:
           command: mv ./builds-test-mmi ./builds
       - run:
           name: test:e2e:chrome:mmi
-          command: |
-            if .circleci/scripts/test-run-e2e.sh
-            then
-              timeout 20m yarn test:e2e:chrome:mmi --retries 1 --build-type=mmi
-            fi
+          command: timeout 20m yarn test:e2e:chrome:mmi --retries 1 --build-type=mmi
           no_output_timeout: 5m
       - store_artifacts:
           path: test-artifacts
@@ -1383,13 +1348,10 @@ jobs:
           command: mv ./builds-test-mv2 ./builds
       - run:
           name: test:e2e:firefox
-          command: |
-            export ENABLE_MV3=false
-            if .circleci/scripts/test-run-e2e.sh
-            then
-              timeout 20m yarn test:e2e:firefox --retries 1
-            fi
+          command: timeout 20m yarn test:e2e:firefox --retries 1
           no_output_timeout: 5m
+          environment:
+            ENABLE_MV3: false
       - store_artifacts:
           path: test-artifacts
           destination: test-artifacts
@@ -1412,14 +1374,10 @@ jobs:
           command: mv ./builds-test-confirmations-mv2 ./builds
       - run:
           name: test:e2e:firefox-confirmation-redesign
-          command: |
-            export ENABLE_MV3=false
-            if .circleci/scripts/test-run-e2e.sh
-            then
-              timeout 20m yarn test:e2e:firefox --retries 1
-            fi
+          command: timeout 20m yarn test:e2e:firefox --retries 1
           no_output_timeout: 5m
           environment:
+            ENABLE_MV3: false
             ENABLE_CONFIRMATION_REDESIGN: 1
       - store_artifacts:
           path: test-artifacts
