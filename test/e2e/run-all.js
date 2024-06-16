@@ -203,6 +203,10 @@ async function main() {
 
   await fs.promises.mkdir('test/test-results/e2e', { recursive: true });
 
+  // Temporary quadruple
+  testPaths = testPaths.concat(testPaths);
+  testPaths = testPaths.concat(testPaths);
+
   let myTestList;
   if (process.env.CIRCLECI) {
     myTestList = runningOnCircleCI(testPaths);
