@@ -47,7 +47,7 @@ describe('Full-size View Setting @no-mmi', function () {
         const [newWindowHandle] = windowHandlesPostClick.filter(
           (handleId) => !windowHandlesPreClick.includes(handleId),
         );
-        const newWindowTitle = await driver.getWindowTitleByHandlerId(
+        const newWindowTitle = await driver.getWindowTitleByHandleId(
           newWindowHandle,
         );
 
