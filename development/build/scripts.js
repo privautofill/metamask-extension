@@ -1209,9 +1209,7 @@ function renderHtmlFile({
   const requiredScripts = [];
   if (includeScripts) {
     const jsBundles = [...commonSet.values(), ...groupSet.values()].map(
-      (label) => {
-        return { script: `./${label}.js`, async: true };
-      },
+      (label) => `./${label}.js`,
     );
 
     const securityScripts = applyLavaMoat
@@ -1229,15 +1227,10 @@ function renderHtmlFile({
 
     requiredScripts.push(
       ...(shouldIncludeSnow
-        ? [
-            { script: './scripts/snow.js', async: false },
-            { script: './scripts/use-snow.js', async: false },
-          ]
+        ? ['./scripts/snow.js', './scripts/use-snow.js']
         : []),
-      { script: './scripts/sentry-install.js', async: false },
-      ...securityScripts.map((script) => {
-        return { script, async: false };
-      }),
+      './scripts/sentry-install.js',
+      ...securityScripts,
       ...jsBundles,
     );
   }

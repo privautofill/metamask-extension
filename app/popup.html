@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
     <title>MetaMask</title>
     <link rel="stylesheet" href="./index.css">
-    <% it.jsBundles.forEach(function({ script, async }) { %>
-      <script src="<%= script %>" type="text/javascript" charset="utf-8" <% if (async) { %>async<% } %>></script>
+    <% it.jsBundles.forEach(function(script) { %>
+      <script src="<%= script %>" type="text/javascript" charset="utf-8" defer></script>
     <% }) %>
   </head>
   <body style="width:357px; height:600px;">
