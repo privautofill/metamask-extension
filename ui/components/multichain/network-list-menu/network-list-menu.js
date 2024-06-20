@@ -68,9 +68,9 @@ import {
 } from '../../../ducks/metamask/metamask';
 import { getLocalNetworkMenuRedesignFeatureFlag } from '../../../helpers/utils/feature-flags';
 import AddNetworkModal from '../../../pages/onboarding-flow/add-network-modal';
+import { hexToDecimal } from '../../../../shared/modules/conversion.utils';
 import PopularNetworkList from './popular-network-list/popular-network-list';
 import NetworkListSearch from './network-list-search/network-list-search';
-import { hexToDecimal } from '../../../../shared/modules/conversion.utils';
 
 const ACTION_MODES = {
   // Displays the search box and network list
@@ -298,7 +298,7 @@ export const NetworkListMenu = ({ onClose }) => {
               category: MetaMetricsEventCategory.Network,
               properties: {
                 location: 'Network Menu',
-                chain_id: currentChainId,
+                chain_id: hexToDecimal(currentChainId),
                 from_network: currentChainId,
                 to_network: network.chainId,
               },
@@ -443,7 +443,7 @@ export const NetworkListMenu = ({ onClose }) => {
                                           MetaMetricsEventCategory.Network,
                                         properties: {
                                           location: 'Network Menu',
-                                          chain_id: currentChainId,
+                                          chain_id: hexToDecimal(currentChainId),
                                           from_network: currentChainId,
                                           to_network: network.chainId,
                                         },
