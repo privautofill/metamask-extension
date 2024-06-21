@@ -12,6 +12,7 @@ jobs:
             if command -v corepack &> /dev/null
             then
               echo "Corepack is enabled"
+              corepack --version
             else
               echo "Corepack is not enabled"
             fi
