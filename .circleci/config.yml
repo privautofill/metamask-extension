@@ -717,9 +717,9 @@ jobs:
     executor: node-linux-medium
     steps:
       - run: *shallow-git-clone
-      - run: sudo corepack enable
       - attach_workspace:
           at: .
+      - run: sudo corepack enable
       - run:
           name: Build extension for testing
           command: yarn build:test:flask
@@ -739,9 +739,9 @@ jobs:
     executor: node-linux-medium
     steps:
       - run: *shallow-git-clone
-      - run: sudo corepack enable
       - attach_workspace:
           at: .
+      - run: sudo corepack enable
       - run:
           name: Build extension for testing
           command: yarn build:test:flask:mv2
@@ -761,9 +761,9 @@ jobs:
     executor: node-linux-medium
     steps:
       - run: *shallow-git-clone
-      - run: sudo corepack enable
       - attach_workspace:
           at: .
+      - run: sudo corepack enable
       - run:
           name: Build extension for testing
           command: yarn build:test:mmi
@@ -811,10 +811,10 @@ jobs:
   prep-build-test:
     executor: node-linux-medium
     steps:
-      - run: *shallow-git-clone
-      - run: sudo corepack enable
       - attach_workspace:
           at: .
+      - run: *shallow-git-clone
+      - run: sudo corepack enable
       - run:
           name: Build extension for testing
           command: yarn build:test
@@ -836,9 +836,9 @@ jobs:
     executor: node-linux-medium
     steps:
       - run: *shallow-git-clone
-      - run: sudo corepack enable
       - attach_workspace:
           at: .
+      - run: sudo corepack enable
       - run:
           name: Build extension for testing
           command: yarn build:test:mv2
@@ -859,10 +859,10 @@ jobs:
   prep-build-confirmation-redesign-test:
     executor: node-linux-medium
     steps:
-      - run: *shallow-git-clone
-      - run: sudo corepack enable
       - attach_workspace:
           at: .
+      - run: *shallow-git-clone
+      - run: sudo corepack enable
       - run:
           name: Build extension for testing
           command: ENABLE_CONFIRMATION_REDESIGN=true yarn build:test
@@ -882,9 +882,9 @@ jobs:
     executor: node-linux-medium
     steps:
       - run: *shallow-git-clone
-      - run: sudo corepack enable
       - attach_workspace:
           at: .
+      - run: sudo corepack enable
       - run:
           name: Build extension for testing
           command: ENABLE_CONFIRMATION_REDESIGN=true yarn build:test:mv2
@@ -904,9 +904,9 @@ jobs:
     executor: node-linux-medium
     steps:
       - run: *shallow-git-clone
-      - run: sudo corepack enable
       - attach_workspace:
           at: .
+      - run: sudo corepack enable
       - run:
           name: Build Storybook
           command: yarn storybook:build
