@@ -719,7 +719,9 @@ jobs:
       - run: *shallow-git-clone
       - attach_workspace:
           at: .
-      - run: sudo corepack enable
+      - run:
+          name: Activate yarn
+          command: corepack enable
       - run:
           name: Build extension for testing
           command: yarn build:test:flask
