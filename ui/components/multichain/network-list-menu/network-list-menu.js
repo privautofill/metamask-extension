@@ -257,16 +257,19 @@ export const NetworkListMenu = ({ onClose }) => {
     };
   };
 
-  const getOnEditCallback = (network) => {
-    return () => {
-      const networkToUse = {
-        ...network,
-        label: network.nickname,
-      };
-      setModalTitle(network.nickname);
-      setNetworkToEdit(networkToUse);
-      setActionMode(ACTION_MODES.EDIT);
+  const getOnEdit = (network) => {
+    const networkToUse = {
+      ...network,
+      label: network.nickname,
     };
+
+    setModalTitle(network.nickname);
+    setNetworkToEdit(networkToUse);
+    setActionMode(ACTION_MODES.EDIT);
+  };
+
+  const getOnEditCallback = (network) => {
+    return () => getOnEdit(network);
   };
 
   const generateMenuItems = (desiredNetworks) => {
@@ -527,7 +530,13 @@ export const NetworkListMenu = ({ onClose }) => {
         </>
       );
     } else if (actionMode === ACTION_MODES.ADD) {
-      return <AddNetworkModal isNewNetworkFlow addNewNetwork />;
+      return (
+        <AddNetworkModal
+          isNewNetworkFlow
+          addNewNetwork
+          getOnEditCallback={getOnEdit}
+        />
+      );
     }
     return (
       <AddNetworkModal

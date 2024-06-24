@@ -16,7 +16,7 @@ import NetworksForm from '../../settings/networks-tab/networks-form/networks-for
 
 export default function AddNetworkModal({
   showHeader = false,
-  isNewNetworkFlow = false,
+  getOnEditCallback = null,
   addNewNetwork = true,
   networkToEdit = null,
 }) {
@@ -50,7 +50,7 @@ export default function AddNetworkModal({
         networksToRender={[]}
         cancelCallback={closeCallback}
         submitCallback={closeCallback}
-        isNewNetworkFlow={isNewNetworkFlow}
+        getOnEditCallback={getOnEditCallback}
         {...additionalProps}
       />
     </>
@@ -59,14 +59,14 @@ export default function AddNetworkModal({
 
 AddNetworkModal.propTypes = {
   showHeader: PropTypes.bool,
-  isNewNetworkFlow: PropTypes.bool,
+  getOnEditCallback: PropTypes.func,
   addNewNetwork: PropTypes.bool,
   networkToEdit: PropTypes.object,
 };
 
 AddNetworkModal.defaultProps = {
   showHeader: false,
-  isNewNetworkFlow: false,
+  getOnEditCallback: null,
   addNewNetwork: true,
   networkToEdit: null,
 };
