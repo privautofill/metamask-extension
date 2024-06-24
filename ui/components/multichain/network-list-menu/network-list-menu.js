@@ -443,7 +443,8 @@ export const NetworkListMenu = ({ onClose }) => {
                                           MetaMetricsEventCategory.Network,
                                         properties: {
                                           location: 'Network Menu',
-                                          chain_id: hexToDecimal(currentChainId),
+                                          chain_id:
+                                            hexToDecimal(currentChainId),
                                           from_network: currentChainId,
                                           to_network: network.chainId,
                                         },
