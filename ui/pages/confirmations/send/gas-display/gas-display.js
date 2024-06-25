@@ -31,6 +31,7 @@ import {
 } from '../../../../selectors';
 
 import { INSUFFICIENT_TOKENS_ERROR } from '../send.constants';
+import { getCurrentDraftTransaction } from '../../../../ducks/send';
 import {
   getNativeCurrency,
   getProviderConfig,
@@ -58,16 +59,7 @@ export default function GasDisplay({ gasError }) {
   const providerConfig = useSelector(getProviderConfig);
   const isTestnet = useSelector(getIsTestnet);
   const isBuyableChain = useSelector(getIsBuyableChain);
-  const draftTransaction = useSelector((state) => {
-    const transaction =
-      (state.metamask.draftTransactions &&
-        state.metamask.currentTransactionUUID &&
-        state.metamask.draftTransactions[
-          state.metamask.currentTransactionUUID
-        ]) ||
-      {};
-    return transaction;
-  });
+  const draftTransaction = useSelector(getCurrentDraftTransaction);
   const useCurrencyRateCheck = useSelector(getUseCurrencyRateCheck);
   const { showFiatInTestnets, useNativeCurrencyAsPrimaryCurrency } =
     useSelector(getPreferences);
@@ -82,34 +74,24 @@ export default function GasDisplay({ gasError }) {
 
   const transactionData = {
     txParams: {
-      gasPrice: draftTransaction.gas?.gasPrice || '0x0',
+      gasPrice: draftTransaction.gas?.gasPrice,
       gas: editingTransaction?.userEditedGasLimit
         ? editingTransaction?.txParams?.gas
-        : draftTransaction.gas?.gasLimit || '0x0',
+        : draftTransaction.gas?.gasLimit,
       maxFeePerGas: editingTransaction?.txParams?.maxFeePerGas
         ? editingTransaction?.txParams?.maxFeePerGas
-        : draftTransaction.gas?.maxFeePerGas || '0x0',
+        : draftTransaction.gas?.maxFeePerGas,
       maxPriorityFeePerGas: editingTransaction?.txParams?.maxPriorityFeePerGas
         ? editingTransaction?.txParams?.maxPriorityFeePerGas
-        : draftTransaction.gas?.maxPriorityFeePerGas || '0x0',
-      value: draftTransaction.amount?.value || '0x0',
-      type: draftTransaction.transactionType || '0x0',
+        : draftTransaction.gas?.maxPriorityFeePerGas,
+      value: draftTransaction.amount?.value,
+      type: draftTransaction.transactionType,
     },
-    userFeeLevel: editingTransaction?.userFeeLevel || 'medium',
+    userFeeLevel: editingTransaction?.userFeeLevel,
   };
 
-  console.log('transactionData:', transactionData);
-  console.log('gasPrice:', transactionData.txParams.gasPrice);
-  console.log('maxFeePerGas:', transactionData.txParams.maxFeePerGas);
-  console.log('maxPriorityFeePerGas:', transactionData.txParams.maxPriorityFeePerGas);
-
   const { hexMaximumTransactionFee, hexTransactionTotal } = useSelector(
-    (state) => {
-      console.log('transactionData passed to transactionFeeSelector:', transactionData);
-      const fees = transactionFeeSelector(state, transactionData);
-      console.log('transactionFeeSelector result:', fees);
-      return fees;
-    },
+    (state) => transactionFeeSelector(state, transactionData),
   );
 
   let title;
