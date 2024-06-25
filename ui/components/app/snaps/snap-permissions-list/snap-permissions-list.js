@@ -72,7 +72,6 @@ export default function SnapPermissionsList({
           snapName={snapName}
           targetSubjectsMetadata={targetSubjectsMetadata}
           showOptions={showOptions}
-          weightThreshold={Infinity}
         />,
       );
     } else {

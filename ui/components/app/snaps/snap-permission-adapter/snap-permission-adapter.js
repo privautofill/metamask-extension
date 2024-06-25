@@ -12,7 +12,7 @@ export default function SnapPermissionAdapter({
   approved,
 }) {
   return permissions
-    .filter((permission) => permission.weight <= weightThreshold ?? Infinity)
+    .filter((permission) => permission.weight <= (weightThreshold ?? Infinity))
     .map((permission, index) => (
       <SnapPermissionCell
         snapId={snapId}

@@ -102,7 +102,6 @@ export default function UpdateSnapPermissionList({
           snapId={snapId}
           snapName={snapName}
           targetSubjectsMetadata={targetSubjectsMetadata}
-          weightThreshold={Infinity}
           approved
         />,
       );
@@ -141,14 +140,12 @@ export default function UpdateSnapPermissionList({
         snapId={snapId}
         snapName={snapName}
         targetSubjectsMetadata={targetSubjectsMetadata}
-        weightThreshold={Infinity}
       />
       <SnapPermissionAdapter
         permissions={revokedWeightedPermissions}
         snapId={snapId}
         snapName={snapName}
         targetSubjectsMetadata={targetSubjectsMetadata}
-        weightThreshold={Infinity}
         revoked
       />
       <Box className="snap-permissions-list">
