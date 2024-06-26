@@ -95,9 +95,7 @@ type AppState = {
   showDeleteMetaMetricsDataModal: boolean;
   showDataDeletionErrorModal: boolean;
   metaMetricsDataDeletionMarked: boolean;
-  ///: BEGIN:ONLY_INCLUDE_IF(snaps)
   snapsInstallPrivacyWarningShown: boolean;
-  ///: END:ONLY_INCLUDE_IF
 };
 
 type AppSliceState = {
@@ -182,9 +180,7 @@ const initialState: AppState = {
   showDeleteMetaMetricsDataModal: false,
   showDataDeletionErrorModal: false,
   metaMetricsDataDeletionMarked: false,
-  ///: BEGIN:ONLY_INCLUDE_IF(snaps)
   snapsInstallPrivacyWarningShown: false,
-  ///: END:ONLY_INCLUDE_IF
 };
 
 export default function reduceApp(
