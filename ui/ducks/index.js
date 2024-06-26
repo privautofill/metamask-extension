@@ -13,10 +13,16 @@ import swapsReducer from './swaps/swaps';
 import historyReducer from './history/history';
 import confirmAlertsReducer from './confirm-alerts/confirm-alerts';
 
-export default combineReducers({
+const initialState = {
+  invalidCustomNetwork: null,
+  unconnectedAccount: null,
+  activeTab: null,
+};
+
+const rootReducer = combineReducers({
   [AlertTypes.invalidCustomNetwork]: invalidCustomNetwork,
   [AlertTypes.unconnectedAccount]: unconnectedAccount,
-  activeTab: (s) => (s === undefined ? null : s),
+  activeTab: (state = initialState.activeTab, action) => state,
   metamask: metamaskReducer,
   appState: appStateReducer,
   DNS: domainReducer,
@@ -29,3 +35,5 @@ export default combineReducers({
   gas: gasReducer,
   localeMessages: localeMessagesReducer,
 });
+
+export default rootReducer;
