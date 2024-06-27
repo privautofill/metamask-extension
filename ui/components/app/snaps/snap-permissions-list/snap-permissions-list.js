@@ -59,6 +59,7 @@ export default function SnapPermissionsList({
       setWeightedPermissions(finalPermissions);
     }
 
+    // Handle abstraction of permissions
     if (showAllPermissions && !showAll) {
       setShowAll(true);
     }
@@ -70,6 +71,7 @@ export default function SnapPermissionsList({
       setShowAll(true);
     }
 
+    // Handle what to display based on the permission abstraction criteria
     if (showAll) {
       setPermissionsToDisplay(
         <SnapPermissionAdapter
