@@ -11,22 +11,28 @@ export default function SnapPermissionAdapter({
   revoked,
   approved,
 }) {
-  return permissions
-    .filter((permission) => permission.weight <= (weightThreshold ?? Infinity))
-    .map((permission, index) => (
-      <SnapPermissionCell
-        snapId={snapId}
-        showOptions={showOptions}
-        connectionSubjectMetadata={
-          targetSubjectsMetadata[permission.connection]
-        }
-        permission={permission}
-        index={index}
-        key={`permissionCellDisplay_${snapId}_${index}`}
-        revoked={revoked}
-        approved={approved}
-      />
-    ));
+  let filteredPermissions = permissions.filter(
+    (permission) => permission.weight <= (weightThreshold ?? Infinity),
+  );
+
+  // If there are no permissions that fall into desired set filtered by weight,
+  // then show only the first three, no matter what the weight is
+  if (filteredPermissions.length === 0) {
+    filteredPermissions = permissions.slice(0, 3);
+  }
+
+  return filteredPermissions.map((permission, index) => (
+    <SnapPermissionCell
+      snapId={snapId}
+      showOptions={showOptions}
+      connectionSubjectMetadata={targetSubjectsMetadata[permission.connection]}
+      permission={permission}
+      index={index}
+      key={`permissionCellDisplay_${snapId}_${index}`}
+      revoked={revoked}
+      approved={approved}
+    />
+  ));
 }
 
 SnapPermissionAdapter.propTypes = {
