@@ -97,7 +97,7 @@ export default function SnapInstall({
     return 'confirm';
   };
 
-  const onShowAllPermissions = () => {
+  const onShowAllPermissionsHandler = () => {
     setShowAllPermissions(true);
   };
 
@@ -192,7 +192,7 @@ export default function SnapInstall({
                 snapName={snapName}
                 permissions={requestState.permissions || {}}
                 connections={requestState.connections || {}}
-                showAllPermissions={onShowAllPermissions}
+                onShowAllPermissions={onShowAllPermissionsHandler}
               />
             </Box>
 

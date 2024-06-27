@@ -13,7 +13,10 @@ import {
   JustifyContent,
 } from '../../../../helpers/constants/design-system';
 import SnapPermissionAdapter from '../snap-permission-adapter';
-import { PermissionWeightThreshold } from '../../../../../shared/constants/permissions';
+import {
+  PermissionsAbstractionThreshold,
+  PermissionWeightThreshold,
+} from '../../../../../shared/constants/permissions';
 import { getSnapName } from '../../../../helpers/utils/util';
 import { getWeightedPermissions } from '../../../../helpers/utils/permission';
 
@@ -23,8 +26,8 @@ export default function SnapPermissionsList({
   permissions,
   connections,
   showOptions,
-  turnOffAbstraction,
   showAllPermissions,
+  onShowAllPermissions,
 }) {
   const t = useI18nContext();
 
@@ -56,11 +59,14 @@ export default function SnapPermissionsList({
       setWeightedPermissions(finalPermissions);
     }
 
-    if (turnOffAbstraction && !showAll) {
+    if (showAllPermissions && !showAll) {
       setShowAll(true);
     }
 
-    if (Object.keys(finalPermissions).length <= 3 && !showAll) {
+    if (
+      Object.keys(finalPermissions).length <= PermissionsAbstractionThreshold &&
+      !showAll
+    ) {
       setShowAll(true);
     }
 
@@ -100,11 +106,11 @@ export default function SnapPermissionsList({
     snapsMetadata,
     permissions,
     connections,
-    turnOffAbstraction,
+    showAllPermissions,
   ]);
 
-  const onShowAllPermissions = () => {
-    showAllPermissions();
+  const onShowAllPermissionsHandler = () => {
+    onShowAllPermissions();
     setShowAll(true);
   };
 
@@ -118,7 +124,7 @@ export default function SnapPermissionsList({
           paddingTop={2}
           paddingBottom={2}
         >
-          <ButtonLink onClick={() => onShowAllPermissions()}>
+          <ButtonLink onClick={() => onShowAllPermissionsHandler()}>
             {t('seeAllPermissions')}
           </ButtonLink>
         </Box>
@@ -133,6 +139,6 @@ SnapPermissionsList.propTypes = {
   permissions: PropTypes.object.isRequired,
   connections: PropTypes.object,
   showOptions: PropTypes.bool,
-  turnOffAbstraction: PropTypes.bool,
-  showAllPermissions: PropTypes.func.isRequired,
+  showAllPermissions: PropTypes.bool,
+  onShowAllPermissions: PropTypes.func,
 };

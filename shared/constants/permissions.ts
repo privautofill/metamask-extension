@@ -38,6 +38,9 @@ export const PermissionWeightThreshold = Object.freeze({
   snapInstall: 3 as const,
   snapUpdateApprovedPermissions: 2 as const,
 });
+
+// Specify number of permissions used as threshold for permission abstraction logic to be applied
+export const PermissionsAbstractionThreshold = 3;
 ///: END:ONLY_INCLUDE_IF
 
 export const PermissionWeight = Object.freeze({
