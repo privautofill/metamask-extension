@@ -267,6 +267,7 @@ export const PERMISSION_DESCRIPTIONS = deepFreeze({
     const baseDescription = {
       leftIcon: IconName.Flash,
       rightIcon: RIGHT_INFO_ICON,
+      weight: PermissionWeight.wallet_snap,
     };
 
     return Object.keys(snaps).map((snapId) => {
@@ -292,7 +293,6 @@ export const PERMISSION_DESCRIPTIONS = deepFreeze({
         ...baseDescription,
         label: t('permission_accessSnap', [snapId]),
         description: t('permission_accessSnapDescription', [snapId]),
-        weight: PermissionWeight.wallet_snap,
       };
     });
   },
