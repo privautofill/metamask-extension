@@ -264,7 +264,6 @@ export const SENTRY_BACKGROUND_STATE = {
     useRequestQueue: true,
     useTransactionSimulations: true,
     enableMV3TimestampSave: true,
-    hasDismissedOpenSeaToBlockaidBanner: true,
   },
   PushPlatformNotificationsController: {
     fcmToken: false,
