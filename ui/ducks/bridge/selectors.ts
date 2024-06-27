@@ -2,10 +2,15 @@ import { createSelector } from 'reselect';
 import { getProviderConfig } from '../metamask/metamask';
 import { getIsBridgeEnabled } from '../../selectors';
 import { ProviderConfig } from '@metamask/network-controller';
+import { ALLOWED_BRIDGE_CHAIN_IDS } from '../../../shared/constants/bridge';
 
 export const getFromChain = (state: any): ProviderConfig =>
   getProviderConfig(state);
 export const getToChain = (state: any): ProviderConfig => state.bridge.toChain;
+// TODO read from feature flags and return ProviderConfig/RPCDefinition
+export const getFromChains = (state: any) => ALLOWED_BRIDGE_CHAIN_IDS;
+// TODO read from feature flags and return ProviderConfig/RPCDefinition
+export const getToChains = (state: any) => ALLOWED_BRIDGE_CHAIN_IDS;
 
 export const getIsBridgeTx = createSelector(
   getFromChain,
